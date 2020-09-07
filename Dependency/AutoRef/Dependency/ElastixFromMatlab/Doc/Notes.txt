@@ -1,0 +1,27 @@
+
+o Une exécution d'elastix peut inclure un ou plusieurs fichiers de
+paramètres pour faire un ou plusieurs recalages successifs.
+
+o Le fichier elastix.log (un seul fichier même si plusieurs transformations)
+contient à la fois la configuration que la convergence et les
+transformations trouvées.  Il faut pouvoir construire le recalage à partir
+de ce fichier.
+
+o Le fichier transformix.log contient le contenu du fichier de
+transformation mais pas celui décrit dans la directive
+InitialTransformParametersFileName.
+
+o When combining transformation with Transformix, it only takes into account
+one of the ResampleInterpolator, Resampler described in the
+TransformParameters.
+
+o Un fichier de transformation contient les paramètres:
+     - Transform type
+     - NumberOfParameters
+     - HowToCombine
+     - ...
+     - FixedImageDimension
+     - MovingImageDimension
+     - Size, Index, Spacing, Origin, Direction, UseDirectionCosines
+     - ResamplerInterpolator
+     - Resampler, DefaultPixelValue, ResultImageFormat, ResultImagePixelType

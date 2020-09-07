@@ -1,0 +1,263 @@
+		       Class and Parameter Hierarchy
+			About the Elastix parameters
+                              Elastix Version: 4.300
+
+o ElastixMain
+  + FixedImageDimension
+  + MovingImageDimension
+  + FixedInternalImagePixelType
+  + MovingInternalImagePixelType
+  + Threads
+
+o RegistrationBase
+  + ErodeMask
+  + ErodeFixedMask
+  + ErodeMovingMask
+
+  o MultiResolutionRegistration
+    + Registration "MultiResolutionRegistration"
+    + NumberOfResolutions
+    + Metric 
+
+  o MultiMetricMultiResolutionRegistration
+       The metrics can use the same pair of images/image
+       pyramids/interpolators /masks, but also different pairs of
+       fixed/moving images etc.
+
+       The number of metrics should always be larger than or equal to the
+       number of fixed/moving images, interpolators, image pyramids etc.
+    + Registration "MultiMetricMultiResolutionRegistration"
+    + NumberOfResolutions
+    + Metric<\d+>Weight (in each resolution)
+    + Metric<\d+>Use  (in each resolution)
+    + Metric AListOfMetrics
+    + Interpolator ForMetric0 ForMetric1
+    + ImageSampler ForMetric0 ForMetric1
+
+  o MultiResolutionRegistrationWithFeatures
+       --> Useful with KNNGraphAlphaMutualInformation (less metric than
+           images).  Sample multiple images with "MultiInputRandomCoordinate"
+    + Registration "MultiResolutionRegistrationMethodWithFeatures"
+    + NumberOfResolutions
+    + Metric<\d+>Weight
+    + Metric AListOfMetrics
+    + Interpolator ForMetric0 ForMetric1  (1 or NumberOfMetric)
+    + ImageSampler ForMetric0 ForMetric1
+
+o FixedImagePyramidBase
+  + FixedImagePyramidSchedule ResLevel0.dim0 ResLevel0.dim1
+  + ImagePyramidSchedule (used when FixedImagePyramidSchedule not specified)
+  + WritePyramidImagesAfterEachResolution
+  o FixedRecursivePyramid
+    + FixedImagePyramid "FixedRecursiveImagePyramid"
+  o FixedShrinkingPyramid
+    + FixedImagePyramid "FixedImageShrinkingPyramid"
+  o FixedSmoothingPyramid
+    + FixedImagePyramid "FixedSmoothingImagePyramid"
+
+o MovingImagePyramidBase
+  + MovingImagePyramidSchedule
+  + ImagePyramidSchedule (used when MovingImagePyramidSchedule not specified)
+  + WritePyramidImageAfterEachResolution
+  ... comme FixedImagePyramidBase
+
+o MetricBase
+  + ShowExactMetricValue
+  + CheckNumberOfSamples (test fraction of samples maps inside the moving 
+      image)
+  + RequiredRatioOfValidSamples
+
+  o AdvancedKappaStatisticMetric
+    + Metric "AdvancedKapaStatistic"
+    + UseComplement
+    + ForeGroundvalue
+
+  o AdvancedMattesMutualInformationMetric
+    + Metric "AdvancedMattesMutualInformation"
+    + NumberOfHistogramBins
+    + NumberOfFixedHistogramBins
+    + NumberOfMovingHistogramBins
+    + FixedKernelBSplineOrder
+    + MovingKernelBSplineOrder
+    + FixedLimitRangeRatio
+    + MovingLimitRangeRatio
+    + UseFastAndLowMemoryVersion
+
+  o MattesMutualInformationWithRigidityPenalty
+    + Metric "MattesMutualInformationWithRigidityPenalty"
+    + NumberOfHistogramBins
+    + NumberOfFixedHistogramsBins
+    + NumberOfMovingHistogramsBins
+    + FixedKernelBSlineOrder
+    + MovingKernelBSplineOrder
+    + FixedLimitRangeRatio
+    + MovingLimitRangeRatio
+    + RigidityPenaltyWeight
+    + (Linearity|Orghonormality|Properness)ConditionWeight
+    + Use(Linearity|Orghonormality|Properness)Condition
+    + Calculate(Linearity|Orthonormality|Properness)Condition
+    + (Fixed|Moving)RigidityImageName
+    ...
+
+  o TransformRigidityPenalty
+    + Metric "TransformRigidityPenalty"
+ 
+
+o InterpolatorBase
+  o BSplineInterpolator
+    + Interpolator "BSplineInterpolator"
+    + BSplineInterpolationOrder
+
+  o BSplineInterpolatorFloat
+    + Interpolator "BSplineInterpolatorFloat"
+    + BSplineInterpolationOrder
+
+  o LinearInterpolator
+
+  o NearestNeighborInterpolator
+
+o OptimizerBase
+  + NewSamplesEveryIteration: One value for each resolution  "true" "true" "true"
+  
+  o AdaptiveStochasticGradientDescent
+    + MaximumNumberOfIterations
+    + MaximumNumberOfSamplingAttempts
+    + AutomaticParameterEstimation -> boolean Calculated parameters 
+             SP_a, SP_alpha, SigmoidMax, SigmoidMin, and SigmoidScale
+    + UseAdaptiveStepSize -> boolean
+    + MaximumStepLength -> (used if AutomaticParameterEstimation=true)
+    + SP_a -> (used if AutomaticPArameterEstimation==false)
+    + SP_A -> (used if AutomaticParameterEstimation==false)
+    + SP_alpha -> (used if AutomaticParameterEstimation==false)
+    + SigmoidMin -> (used if AutomaticParameterEstimation==false)
+    + SigmoidScale -> (used if AutomaticParameterEstimation==false)
+    + SigmoidInitialTime 
+    + NumberOfGradientMeasurement -> (used if
+        AutomaticParameterEstimation==true)
+    + NumberOfJacobianMeasurement -> (used if 
+        AutomaticParameterEstimation==true)
+    + NumberOfSamplesForExactGradient -> (used if
+        AutomaticParameterEstimation==true)
+
+  o StandardGradientDescent
+    + MaximumNumberOfIterations
+    + MaximumNumberOfSamplingAttempts
+    + SP_a -> Each resolution
+    + SP_A -> Each resolution
+    + SP_alpha -> Each resolution
+
+  o FullSearch
+    + FullSearchSpace -> (FullSearchSpace0 "translation_x" 2 -4.0 3.0 1.0
+    "rotation_y" 3 -1.0 1.0 0.5)
+
+  o 
+
+o TransformBase
+  + UseDirectionCosines
+  + HowToCombineTranforms "Compose|Add"
+  + ... extra parameters set with command line arguments
+     + -t0 InitialTransformParametersFilename
+     + -def InputPoints.txt | -def all
+  + Extra parameters set by running elastix
+     + Size
+     + Index
+     + Spacing
+     + Origin
+     + Direction
+     + NumberOfParameters
+     + TransformParameters
+     + InitialTransformParametersFileName
+
+
+  o AdvancedAffineTransform
+    + Transform == "AffineTransform"
+    + Scales: Parameter (1 argument=rotation)
+    + CenterOfRotation: index around which the image is rotated
+           -> geometric center by default.
+    + AutomaticScaleEstimation
+    + AutomaticTransformInitialization
+    Parameters defined for transformix
+    + CenterOfRotation  (an index)
+    + CenterOfRotationPoint
+
+  o EulerTransformElastix
+    + Transform "EulerTransform"
+    Same asAdvancedAffineTransform
+
+  o AdvancedBSplineTransform
+    + Transform "AdvancedBSplineTransform"
+    + FinalGridSpacingInVoxels
+    + FinalGridSpacingInPhysicalUnits
+    + GridSpacingSchedule
+    + PassiveEdgeWidth
+    + GridSize
+    + GridIndex
+    + GridSpacing
+    + GridOrigin
+
+  o WeightedCombinationTransform
+    + Transfrom "WeightedCombinationTransform"
+    + NormalizeCombinationWeight
+    + SubTransforms
+    + AutomaticScalesEstimations
+    + Scales
+    Parameter necessary for transformix
+    + NormalizeCombinationWeights
+    + SubTransforms
+    + WeightedCombinationTransform
+
+o ImageSamplerBase
+  + ImageSampler
+  o ImageFullSampler
+    + ImageSampler "Full"
+  o ImageGridSampler
+    + ImageSampler "Grid" (not recommended)
+    + SampleGridSpacing ForEachDimensionEachResolution
+  o ImageRandomSamplerBase
+     o RandomCoordinateSampler
+            --> sample position between voxels
+       + ImageSampler "RandomCoordinate" 
+       + NumberOfSpatialSamples OneorOneForEachResolution
+       + UseRandomSampleRegion (select a subregion of the image 
+             at each iteration)
+       + SampleRegionSize (in mm for each dimension and each resolution)
+             used if UseRandomSampleRegion==true 
+       + FixedImageBSplineInterpolationOrder
+     o RandomSampler
+       + ImageSampler "Random"
+       + NumberOfSpatialSamples
+     o RandomSamplerSparseMask
+       + ImageSampler "RandomSparseMask"
+       + NumberOfSpatialSamples
+     o MultiInputRandomCoordinateSampler
+             --> sample position between voxels
+       + ImageSampler "MultiInputRandomCoordinate"
+       + NumberOfSpatialSamples
+       + UseRandomSampleRegion
+       + SampleRegionSize
+       + FixedImageBSplineInterpolationOrder
+
+o ResampleBase
+  + WriteResultImage
+  + WriteResultImageAfterEachIteration
+  + ResultImageFormat
+  + ResultImagePixelType
+  + CompressResultImage
+
+o ResampleInterpolatorBase
+  o BSplineResampleInterpolator
+    + ResampleInterpolator "FinalBSplineInterpolator"
+    + FinalBSplineInterpolationOrder
+  o BSplineResampleInterpolatorFloat
+    + ResampleInterpolator "FinalBSplineInterpolatorFloat"
+    + FinalBSplineInterpolationOrder
+  o NearestNeighborResampleInterpolator
+    + ResampleInterpolator "FinalNearestNeighborInterpolator"
+    + 
+
+o ResamplerBase
+  + DefaultPixelValue
+  o MyStandardResampler  --> Generate the deformed moving image after 
+              registration
+    + Resampler "DefaultResampler"
+  
