@@ -30,51 +30,59 @@ To use the function, you simply have to provide the full directories (string) to
 ```matlab
 [qualityScore,qualityClass] = SQC(scanPath,segPathIn,normStatus,qualityClassThr);
 ```
-Input:
+**Input:**
+
   1- scanPath: The path of the Image you run the segmentation on.The scan must be in .mhd, .mha, .mat or DICOM format. (string)
+  
   2- segPath: The path of the resulted segmentation.The segmentation must be in .mhd, .mha, .mat or DICOM format. (string)
+  
   3- normStatus: You have to set a number (1,2 or 3). (numeric)
+  
   4- qualityClassThr: The threshould, which any qualityScore less than it would be considered NOT acceptable, and any value eqault or higher than it will be considered    Acceptable. (numeric)
 
-Output:
+
+**Output:**
+
   1- qualityScore: The segmentation quality score. (numeric)
+  
   2- qualityClass: The segmentaion quality class. (string)
+  
 
-Example for unnormalized scan with DICOM format:
+**Example for unnormalized scan with DICOM format:**
 
-Let say you have a the images resulted from an unnormalized T2-weighted MRI scan of the prostate (Case10) and the segmentation of that scan (Case10_segmentation) in DICOM format (3D image).
+*Let say you have a the images resulted from an unnormalized T2-weighted MRI scan of the prostate (Case10) and the segmentation of that scan (Case10_segmentation) in DICOM format (3D image).
 And let assume that you want to concider any quality score more than 85 acceptable.
-Then you have to type this:
+Then you have to type this:*
 ```matlab
 scanPath = 'C:\Data\Case10';
 segPath = 'C:\Data\Case10_segmentation';
 [qualityScore,qualityClass] = SQC(scanPath,segPath,1,85)
 ```
-Example for unnormalized scan with MetaIO format:
+**Example for unnormalized scan with MetaIO format:**
 
-Let say you have a the images resulted from an unnormalized T2-weighted MRI scan of the prostate (Case10) and the segmentation of that scan (Case10_segmentation) in MetaIO format (3D image).
+*Let say you have a the images resulted from an unnormalized T2-weighted MRI scan of the prostate (Case10) and the segmentation of that scan (Case10_segmentation) in MetaIO format (3D image).
 And let assume that you want to concider any quality score more than 85 acceptable.
-Then you have to type this:
+Then you have to type this:*
 ```matlab
 scanPath = 'C:\Data\Case10.mhd';
 segPath = 'C:\Data\Case10_segmentation.mhd';
 [qualityScore,qualityClass] = SQC(scanPath,segPath,1,85)
 ```
-Example for normalized scan with AutoRef normalization method:
+**Example for normalized scan with AutoRef normalization method:**
 
-Let say you have a the images resulted from a normalized T2-weighted MRI scan of the prostate (Case10_normalized) and the segmentation of that scan (Case10_segmentation) in MetaIO format (3D image).
+*Let say you have a the images resulted from a normalized T2-weighted MRI scan of the prostate (Case10_normalized) and the segmentation of that scan (Case10_segmentation) in MetaIO format (3D image).
 And let assume that you want to concider any quality score more than 85 acceptable.
-Then you have to type this:
+Then you have to type this:*
 ```matlab
 scanPath = 'C:\Data\Case10_normalized.mhd';
 segPath = 'C:\Data\Case10_segmentation.mhd';
 [qualityScore,qualityClass] = SQC(scanPath,segPath,2,85)
 ```
-Example for normalized scan with AutoRef normalization method that sved as .mat:
+**Example for normalized scan with AutoRef normalization method that sved as .mat:**
 
-Let say you have a the images resulted from a normalized T2-weighted MRI scan of the prostate (Case10_normalized), which was saved as .mat, and the segmentation of that scan (Case10_segmentation) in MetaIO format (3D image).
+*Let say you have a the images resulted from a normalized T2-weighted MRI scan of the prostate (Case10_normalized), which was saved as .mat, and the segmentation of that scan (Case10_segmentation) in MetaIO format (3D image).
 And let assume that you want to concider any quality score more than 85 acceptable.
-Then you have to type this:
+Then you have to type this:*
 ```matlab
 scanPath = 'C:\Data\Case10_normalized.mat';
 segPath = 'C:\Data\Case10_segmentation.mhd';
