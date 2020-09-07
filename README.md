@@ -1,4 +1,4 @@
-# PSQC
+# SQC
 "A quality control system for automated prostate segmentation on T2-weighted MRI"
 
 This is a fully automated quality control system that generate a quality score for assessing the accuracy of automated prostate segmentations on T2W MR imagese.
