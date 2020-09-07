@@ -117,3 +117,7 @@ restoredefaultpath;
 rehash toolboxcache;
 savepath
 ```
+
+# Retrain the system
+If you want to retrain the sytem follow the instructions in "Retrain"
+https://github.com/ntnu-mr-cancer/SQC/tree/master/Retrain
