@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding="utf-8"?>
+
+<toc version="2.0">
+    <tocitem target="ElastixFromMatlab_product_page.html">ElastixFromMatlab Toolbox
+        <tocitem target="ElastixFromMatlab_reqts.html" image="HelpIcon.GETTING_STARTED">
+            Requirements
+        </tocitem>
+        <tocitem target="ElastixFromMatlab_examples.html">
+          Examples
+        </tocitem>
+        <tocitem target="ElastixFromMatlab_functions.html">
+          List of public functions
+        </tocitem>
+        <tocitem target="ElastixFromMatlab_datastructures.html">
+          List of important data structures
+        </tocitem>
+    </tocitem>
+</toc>
