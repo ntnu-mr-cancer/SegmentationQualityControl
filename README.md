@@ -21,44 +21,65 @@ In case of using or refering to AutoRef, please cite it as:
 # How to use the system
 This is a MATLAB® function, the function was written and tested using MATLAB® R2019b.
 
-To run the function you can use the SQC.m file and make sure to install the trained model "trainedModel.mat" and the Dependency folder.
+To run the function you can use the SQC.m file and make sure to install the trained model "trainedModel.mat", 'pyradiomicsFeatureExtraction.py', the Dependency folder and prepare python environment.
 In addition, you have to install the requisted third party toolboxes as desciped in the Dependency section below.
 
 Make sure that all of these files are in the same folder.
 
-To use the function, you simply have to provide the full directory (string) to your DICOM foldr or MetaIO (.mha/.mhd) image as an input to the AutoRef function.
+To use the function, you simply have to provide the full directories (string) to your scan and segmentation (DICOM foldr or MetaIO (.mha/.mhd)) image as an input to the SQC function. You also need to specify if your scan normalized using AutoRef or not and you need to set a threshould to distinguish the acceptable and not acceptable segmentations.
 ```matlab
-normalized = AutoRef('full_directory');
+[qualityScore,qualityClass] = SQC(scanPath,segPathIn,normStatus,qualityClassThr);
 ```
-The output (normalized) is a structure that contains:
-1. normalized.Data: 3D image data (the normalized image).
-2. normalized.info: DICOM info, organized per slice.
-3. normalized.A: affine transformation matrix to transform image to the world coordinate system.
-4. normalized.R: reference image coordinate system.
+Input:
+  1- scanPath: The path of the Image you run the segmentation on.The scan must be in .mhd, .mha, .mat or DICOM format. (string)
+  2- segPath: The path of the resulted segmentation.The segmentation must be in .mhd, .mha, .mat or DICOM format. (string)
+  3- normStatus: You have to set a number (1,2 or 3). (numeric)
+  4- qualityClassThr: The threshould, which any qualityScore less than it would be considered NOT acceptable, and any value eqault or higher than it will be considered    Acceptable. (numeric)
 
-Example for DICOM folders:
+Output:
+  1- qualityScore: The segmentation quality score. (numeric)
+  2- qualityClass: The segmentaion quality class. (string)
 
-Let say you have a folder with the images resulted from a T2-weighted MRI scan of the prostate (Case10).
-To get the normalized image (Structure in MATLAB®) you have to type this:
+Example for unnormalized scan with DICOM format:
+
+Let say you have a the images resulted from an unnormalized T2-weighted MRI scan of the prostate (Case10) and the segmentation of that scan (Case10_segmentation) in DICOM format (3D image).
+And let assume that you want to concider any quality score more than 85 acceptable.
+Then you have to type this:
 ```matlab
-normalized = AutoRef('C:\Data\Case10');
+scanPath = 'C:\Data\Case10';
+segPath = 'C:\Data\Case10_segmentation';
+[qualityScore,qualityClass] = SQC(scanPath,segPath,1,85)
 ```
-Example for MetaIO image:
+Example for unnormalized scan with MetaIO format:
 
-Let say you have a the images resulted from a T2-weighted MRI scan of the prostate (Case10) in MetaIO format (3D image).
-To get the normalized image (Structure in MATLAB®) you have to type this:
+Let say you have a the images resulted from an unnormalized T2-weighted MRI scan of the prostate (Case10) and the segmentation of that scan (Case10_segmentation) in MetaIO format (3D image).
+And let assume that you want to concider any quality score more than 85 acceptable.
+Then you have to type this:
 ```matlab
-normalized = AutoRef('C:\Data\Case10.mhd');
+scanPath = 'C:\Data\Case10.mhd';
+segPath = 'C:\Data\Case10_segmentation.mhd';
+[qualityScore,qualityClass] = SQC(scanPath,segPath,1,85)
 ```
+Example for normalized scan with AutoRef normalization method:
 
-After that you can cinvert the matlab image to the format you find suitable for your work.
-For example you can conver the normalized image to a MetaIO image.
+Let say you have a the images resulted from a normalized T2-weighted MRI scan of the prostate (Case10_normalized) and the segmentation of that scan (Case10_segmentation) in MetaIO format (3D image).
+And let assume that you want to concider any quality score more than 85 acceptable.
+Then you have to type this:
 ```matlab
-StrDatax = elxIm3dToStrDatax(normalized);
-Filename = 'C:\Data\Case10_Normalized.mhd';
-elxStrDataxToMetaIOFile(StrDatax, FilenameNorm, 0);
+scanPath = 'C:\Data\Case10_normalized.mhd';
+segPath = 'C:\Data\Case10_segmentation.mhd';
+[qualityScore,qualityClass] = SQC(scanPath,segPath,2,85)
 ```
+Example for normalized scan with AutoRef normalization method that sved as .mat:
 
+Let say you have a the images resulted from a normalized T2-weighted MRI scan of the prostate (Case10_normalized), which was saved as .mat, and the segmentation of that scan (Case10_segmentation) in MetaIO format (3D image).
+And let assume that you want to concider any quality score more than 85 acceptable.
+Then you have to type this:
+```matlab
+scanPath = 'C:\Data\Case10_normalized.mat';
+segPath = 'C:\Data\Case10_segmentation.mhd';
+[qualityScore,qualityClass] = SQC(scanPath,segPath,3,85)
+```
 # Dependency 
 This function depend on the followings, which you should make sure that you have correctly installed them on your computer:
 1. Convert3D tool from ITK 
