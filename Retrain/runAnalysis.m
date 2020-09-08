@@ -10,6 +10,7 @@ clc
 rng(1)
 % Paths
 basePath = 'C:\Study\Analysis';
+originalScansPath = 'C:\Study\OriginalScansPath';
 % Add path
 addpath(genpath(basePath));
 %% Make Folders
@@ -35,6 +36,7 @@ end
 % nnU-Net 2D and 3D (two diffrent models) https://github.com/MIC-DKFZ/nnUNet/tree/c3347d7e4623b5effc1a6728a7799fa9b1eeea8d
 %% Organize data
 % Put the original scans (.mhd) in the "fullfile(basePath,'Data','Original')"
+copy(originalScansPath,fullfile(basePath,'Data','Original'))
 %% Pre-processing
 disp('-Pre-prcoessing')
 preProcess(basePath)
