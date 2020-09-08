@@ -33,6 +33,8 @@
  2. BlandAltman: an exchange function to help you plot Bland-Altman plot during the optimization.
         - Included in the "Code" folder.
         - Ran Klein (2020). Bland-Altman and Correlation Plot (https://www.mathworks.com/matlabcentral/fileexchange/45049-bland-altman-and-correlation-plot), MATLAB Central File Exchange. Retrieved September 8, 2020.
-        
+ 3. Customized matlab functions and python scripts to calculate reference scores and extract features. 
+        - Included in the "Code" folder.
+        - Brief description included in their headers.
  # Contact us
  If you are facing problems and need to contact us, you can send an email to: mohammed.sunoqrot@ntnu.no
