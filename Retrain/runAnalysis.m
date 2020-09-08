@@ -92,7 +92,7 @@ else
     load('optimize.mat')
 end
 lambda = optimize.lambda;
-%% Evaluate All The Models
+%% Evaluate The General Model
 disp('-Make Models')
 if ~exist('models.mat','file')
     models = makeModels(prep,lambda);
