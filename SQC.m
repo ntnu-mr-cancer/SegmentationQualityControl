@@ -57,7 +57,7 @@ mkdir(tempFEPath)
 %% Give a pseudo number
 CaseNumber = ['Case' num2str(randi([100 999]))];
 %% Segmentation preparing
-segPath = segPrep(segPathIn,CaseNumber,tempPath,1);
+segPath = segPrep(segPathIn,CaseNumber,tempPath);
 %% Normalize using AutoRef
 FileCaseNumberNorm = checkNormalization(scanPath,normStatus,CaseNumber,tempPath);
 %% Feature extraction
