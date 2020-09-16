@@ -120,7 +120,7 @@ savepath
 
 # Retrain the system
 If you want to retrain the sytem follow the instructions in "Retrain"
-https://github.com/ntnu-mr-cancer/SQC/tree/master/Retrain
+https://github.com/ntnu-mr-cancer/SegmentationQualityControl/tree/master/Retrain
 
 There you will find a detailed desctiotion and all the codes you need to do the training. 
 
