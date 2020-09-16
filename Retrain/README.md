@@ -29,7 +29,7 @@
   - Report: This step to generate report to give you an overview of the model performance.
   
   # Dependency
- 1. You need to put All the contents of the https://github.com/ntnu-mr-cancer/SQC/tree/master/Dependency in "Code" folder.
+ 1. You need to put All the contents of the https://github.com/ntnu-mr-cancer/SegmentationQualityControl/tree/master/Dependency in "Code" folder.
  2. BlandAltman: an exchange function to help you plot Bland-Altman plot during the optimization.
         - Included in the "Code" folder.
         - Ran Klein (2020). Bland-Altman and Correlation Plot (https://www.mathworks.com/matlabcentral/fileexchange/45049-bland-altman-and-correlation-plot), MATLAB Central File Exchange. Retrieved September 8, 2020.
