@@ -1,7 +1,18 @@
 %------------------------------------------------
 % Segmentation Quality Score
+% "A quality control system for automated prostate segmentation on T2-weighted MRI"
+% 
+% This is a fully automated quality control system that generate a quality score
+% for assessing the accuracy of automated prostate segmentations on T2W MR imagese.
 %
-% By Mohammed R. S. Sunoqrot, MR Cancer group, NTNU, Trondheim, Norway.
+% By Mohammed R. S. Sunoqrot, et.al., MR Cancer group, NTNU, Trondheim, Norway.
+%
+% In case of using or refering to this system, please cite it as:
+%   Sunoqrot, M.R.S.; Selnæs, K.M.; Sandsmark, E.; Nketiah, G.A.; Zavala-Romero, O.;
+%   Stoyanova, R.; Bathen, T.F.; Elschot, M. A Quality Control System for Automated
+%   Prostate Segmentation on T2-Weighted MRI. Diagnostics 2020,10, 714.
+%   https://doi.org/10.3390/diagnostics10090714
+%   https://www.mdpi.com/2075-4418/10/9/714 
 %
 % Input:
 %   scanPath: The path of the Image you run the segmentation on.The scan
