@@ -18,6 +18,7 @@ The provided algorithm was developed for research use and was NOT meant to be us
 In case of using or refering to this system, please cite it as:
 
 Sunoqrot, M.R.S.; Selnæs, K.M.; Sandsmark, E.; Nketiah, G.A.; Zavala-Romero, O.; Stoyanova, R.; Bathen, T.F.; Elschot, M. A Quality Control System for Automated Prostate Segmentation on T2-Weighted MRI. *Diagnostics* **2020**,*10*, 714.
+https://doi.org/10.3390/diagnostics10090714
 
 # How to use the system
 This is a MATLAB® function, the function was written and tested using MATLAB® R2019b.
