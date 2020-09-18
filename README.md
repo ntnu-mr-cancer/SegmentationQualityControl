@@ -9,14 +9,15 @@ The performance of our system is developed and tested using two data cohorts and
 The method was developed at the MR Cancer group at the Norwegian University of Science and Technology (NTNU) in Trondheim, Norway.
 https://www.ntnu.edu/isb/mr-cancer
 
-For detailed information about this method, please read our paper:
+For detailed information about this method, please read our paper: https://www.mdpi.com/2075-4418/10/9/714
 
 # Note
 The provided algorithm was developed for research use and was NOT meant to be used in clinic.
 
 # How to cite the system
-In case of using or refering to AutoRef, please cite it as:
+In case of using or refering to this system, please cite it as:
 
+Sunoqrot, M.R.S.; Selnæs, K.M.; Sandsmark, E.; Nketiah, G.A.; Zavala-Romero, O.; Stoyanova, R.; Bathen, T.F.; Elschot, M. A Quality Control System for Automated Prostate Segmentation on T2-Weighted MRI. *Diagnostics* **2020**,*10*, 714.
 
 # How to use the system
 This is a MATLAB® function, the function was written and tested using MATLAB® R2019b.
