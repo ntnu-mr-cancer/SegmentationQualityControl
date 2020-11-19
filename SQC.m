@@ -59,7 +59,7 @@ function [qualityScore,qualityClass] = SQC(scanPath,segPathIn,normStatus,quality
 basePath = which('SQC.m');
 basePath = basePath(1:end-6);
 %% Add Dependency
-addpath(genpath(fullfile(basePath,'Dependency')));
+addpath(genpath(basePath));
 % Make temporary folders
 tempPath = fullfile(basePath,'temp');
 tempFEPath = fullfile(basePath,'tempFE');
@@ -180,10 +180,10 @@ end
 %   features: The extracted radiomics features. (table)
 %
 function features = featureExtraction(basePath,CaseNumber)
-addpath(genpath(fullfile(pwd,'Codes')));
 %% Extract features
 % Use Pyradiomics (V 2.2) package from python (3.7)
-system('python pyradiomicsFeatureExtraction.py');
+[~,~] = system(['python ' fullfile(basePath,'pyradiomicsFeatureExtraction.py')]);
+
 %% Organize features
 % region classes
 region_classes = {'wholeprostate','apex','base'};
