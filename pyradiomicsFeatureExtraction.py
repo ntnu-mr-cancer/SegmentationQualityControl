@@ -12,6 +12,7 @@ import numpy as np
 import math
 import json
 import os
+import sys
 
 def getSettings(image_array_in,mask_array_in,nr_bins):
     intensity_range = np.max(image_array_in[mask_array_in == 1])-np.min(image_array_in[mask_array_in == 1])
@@ -30,7 +31,7 @@ def getSliceFromMask(mask_in,slice_nr_in):
     return new_mask
 
 # Get paths
-with open(os.path.join(os.getcwd(),'paths.txt')) as f: 
+with open(os.path.join(os.path.dirname(sys.argv[0]),'paths.txt')) as f: 
     flines = f.readlines()
     image_dir = flines[0].strip()
     mask_dir = flines[1].strip()
