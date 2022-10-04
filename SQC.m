@@ -110,6 +110,28 @@ end
 %
 function segPathOut = segPrep(segPathIn,CaseNumber,tempPath)
 if contains(segPathIn,'.mhd') || contains(segPathIn,'.mha')
+% Read mhd header into cell A
+    fid = fopen(segPathIn,'r');
+    i = 1;
+    tline = fgetl(fid);
+    A{i} = tline;
+    while ischar(tline)
+        i = i+1;
+        tline = fgetl(fid);
+        A{i} = tline;
+    end
+    fclose(fid);
+    if numel(A)>15
+        % Change cell A and save in B
+        B = {A{1:10},A{58:60}}; % new cell array with the wanted lines
+        % Write cell B into mhd header
+        fid = fopen(segPathIn, 'w');
+        for i = 1:numel(B)
+            fprintf(fid,'%s\n', B{i});
+        end
+        fclose(fid);
+    end
+    % done correcting
     [StrDatax, ~, ~] = elxMetaIOFileToStrDatax(segPathIn, 0);
     segPathOut = fullfile(tempPath,[CaseNumber '_segmentation.mhd']);
     elxStrDataxToMetaIOFile(StrDatax, segPathOut, 0);
