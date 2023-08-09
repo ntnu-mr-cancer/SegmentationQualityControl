@@ -20,6 +20,10 @@ In case of using or refering to this system, please cite it as:
 Sunoqrot, M.R.S.; Selnæs, K.M.; Sandsmark, E.; Nketiah, G.A.; Zavala-Romero, O.; Stoyanova, R.; Bathen, T.F.; Elschot, M. A Quality Control System for Automated Prostate Segmentation on T2-Weighted MRI. *Diagnostics* **2020**,*10*, 714.
 https://doi.org/10.3390/diagnostics10090714
 
+# Python Version
+For the Python Version/Package(pyPSQC)
+Check this repository: https://github.com/MohammedSunoqrot/pyPSQC . You can install the package either from pip or using pip `pip install pyPSQC` or the files in GitHub repository [https://github.com/MohammedSunoqrot/pyPSQC]
+
 # How to use the system
 This is a MATLAB® function, the function was written and tested using MATLAB® R2019b.
 
